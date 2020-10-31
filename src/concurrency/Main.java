@@ -18,7 +18,12 @@ Then compute the sum with only one thread, and display the sum and times for bot
  * Date completed: October 30, 2020
  * 
  * Summary:
- * This program demonstrates the use of multithreading
+ * This program demonstrates the use of multithreading.
+ * The program will perform a parallel sum calculation.
+ * One calculation will occur in a single thread and three others will occur
+ * in their own threads.
+
+ * The program will return the time it took to complete each operation in milliseconds
  */
 
 public class Main {
@@ -30,17 +35,17 @@ public static void main(String[] args) throws InterruptedException {
 	
 	//randomizes the array of 3 million numbers sized 1-1000
 	System.out.println("Getting random numbers...");
-	int[] single = random.ints(250000000, 1, 1000).toArray();
+	int[] single = random.ints(250000000, 1, 10).toArray();
 
 	//s = single , m = multithreaded
 	Worker s1 = new Worker(single, "s1");
 	
 	//Re-declares random values after they're assigned to each array
-	int[] multi = random.ints(75000000, 1, 1000).toArray();
+	int[] multi = random.ints(75000000, 1, 10).toArray();
 	Worker m1 = new Worker(multi, "m1");
-	multi = random.ints(75000000, 1, 1000).toArray();
+	multi = random.ints(75000000, 1, 10).toArray();
 	Worker m2 = new Worker(multi, "m2");
-	multi = random.ints(75000000, 1, 1000).toArray();
+	multi = random.ints(75000000, 1, 10).toArray();
 	Worker m3 = new Worker(multi, "m3");
 	System.out.println("Random numbers initialized!\n\n");
 	
@@ -56,7 +61,9 @@ public static void main(String[] args) throws InterruptedException {
 	new Thread (m3).start();
 	
 	Thread.sleep(300);
+	System.out.println("Single-threaded calculated sum: " + s1.getSum());
 	System.out.println("Single-threaded calculation performed in: " + s1.getTime() + " ms.");
+	System.out.println("Multi-threaded calculation sum: " + (m1.getSum() + m2.getSum() + m3.getSum()));
 	System.out.println("Multi-threaded calculation performed in: " + 
 			((m1.getTime() + m2.getTime() + m3.getTime())/3) + " ms.");
 

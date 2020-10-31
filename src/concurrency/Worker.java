@@ -5,6 +5,7 @@ public class Worker implements Runnable{
 	private int theArray[];
 	private double time;
 	private String name;
+	private int sum;
 
 	public Worker(int[] theArray, String name) {
 		super();
@@ -25,6 +26,14 @@ public class Worker implements Runnable{
 	public void setTime(double time) {
 		this.time = time;
 	}
+	
+	public void setSum(int sum) {
+		this.sum = sum;
+	}
+	
+	public int getSum() {
+		return sum;
+	}
 
 
 
@@ -33,7 +42,7 @@ public class Worker implements Runnable{
 		synchronized(this) {
 			setTime(System.currentTimeMillis());
 			//System.out.println("Starting calculation for " + this.getName());
-			sum(theArray);
+			setSum(sum(theArray));
 			//System.out.println("Calculation complete for " + this.getName());
 			setTime(System.currentTimeMillis() - time);
 			//System.out.println(this.getName() + " took " + time + " ms to calculate");
