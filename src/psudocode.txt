@@ -1,0 +1,17 @@
+Generate worker object
+	Array of 250 million random numbers
+	Pass into function to calculate sum
+	Get system time
+	Calculate sum
+	Get system time difference after completion
+	return time
+
+Generate worker object
+	Array of 200 million random numbers
+	divide into 3 arrays of 75 million
+	get system time
+	calculate sum of arrays
+	get system time difference after completion
+	return time
+
+in main, display time it took for the single and multithreaded operations to complete
